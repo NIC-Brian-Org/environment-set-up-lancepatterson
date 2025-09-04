@@ -5,12 +5,30 @@ console.log('main.js');
         const multiplier = document.getElementById( 'multiplier' );
         const multiplicand = document.getElementById( 'multiplicand' );
         const product = document.getElementById( 'product' );
+        const operator = document.getElementById( 'operator' );
 
         const update = () => {
-            product.innerHTML = parseFloat( multiplier.value ) * parseFloat( multiplicand.value );
+                const a = parseFloat(multiplier.value)
+                const b = parseFloat(multiplicand.value)
+
+                let result;
+
+                if (operator.value === '+'){
+                    result = a + b;
+                } else if (operator.value === '-'){
+                    result = a - b;
+                } else if (operator.value === '*'){
+                    result = a * b;
+                } else {
+                    result = a / b;
+                }
+                product.textContent = result;
         };
 
         multiplier.addEventListener("input", update);
         multiplicand.addEventListener("input", update);
+        operator.addEventListener('change', update);
+
+        update();
     });      
 })();
